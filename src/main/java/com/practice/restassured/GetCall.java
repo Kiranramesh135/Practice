@@ -1,11 +1,13 @@
 package com.practice.restassured;
 
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
@@ -17,7 +19,7 @@ public class GetCall {
         HashMap<String,String> rh = new HashMap<>();
         rh.put("Accept", "application/json");
         rh.put("Content-type", "application/json");
-        rh.put("x-api-key", "reqres-free-v1");
+        rh.put("x-api-key", "free_user_3Dts2XuUnTIeXE2f0Bcl3F5RXQJ");
 
         Response res = given()
                 .headers(rh)
@@ -27,9 +29,23 @@ public class GetCall {
                 .then()
                 .assertThat().statusCode(200).and().extract().response();
 
-        JSONObject jObject = new JSONObject(res.asString());
-        System.out.println(jObject.getJSONArray("data").getJSONObject(0).get("email"));
+//        JSONObject jObject = new JSONObject(res.asString());
+//        System.out.println(jObject.getJSONArray("data").getJSONObject(0).get("email"));
+//
+//        Object b = jObject.getJSONArray("data");
+//
+////        JsonPath jp = new JsonPath(res.asString());
+////        List<String> a = jp.getList("");
+//
+//
+//        jObject.getJSONArray("data").getJSONObject(0);
 
-        jObject.getJSONArray("data").getJSONObject(0);
+        JsonPath response = res.jsonPath();
+        System.out.println(response.getString("data[1].email"));
+        List<String> emails = response.getList("data.email");
+
+        System.out.println(emails);
+
+
     }
 }

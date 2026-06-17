@@ -2,6 +2,7 @@ package com.practice.restassured;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.testng.Assert;
 
 import java.util.HashMap;
 
@@ -14,7 +15,7 @@ public class PostCall {
         HashMap<String, String> map = new HashMap<>();
         map.put("Accept","application/json");
         map.put("Content-Type","application/json");
-        map.put("x-api-key", "reqres-free-v1");
+        map.put("x-api-key", "free_user_3Dts2XuUnTIeXE2f0Bcl3F5RXQJ");
 
         String payload = "{\n" +
                 "    \"name\": \"Kiran\",\n" +
@@ -32,6 +33,9 @@ public class PostCall {
                 .assertThat().statusCode(201).extract().response();
 
         System.out.println(res.asString());
+        System.out.println(res.jsonPath().getString("name"));
+        Assert.assertEquals(res.jsonPath().getString("name"),"Kiran");
+
     }
 }
 

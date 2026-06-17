@@ -28,7 +28,6 @@ public class ActionsClass {
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
 
-
 //		driver.findElement(By.linkText("Print...")).click();
 
 

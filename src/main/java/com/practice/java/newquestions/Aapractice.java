@@ -1,37 +1,46 @@
 package com.practice.java.newquestions;
 
+import io.cucumber.java.hu.Ha;
 import io.cucumber.java.it.Ma;
+import io.cucumber.java.sl.In;
+import org.apache.commons.io.FileUtils;
+import org.apache.tools.ant.types.selectors.TypeSelector;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.io.File;
+import java.io.IOException;
+import java.lang.instrument.ClassDefinition;
+import java.lang.reflect.Array;
+import java.time.Duration;
 import java.util.*;
 
 public class Aapractice {
 
     public static void main(String[] args) {
+        int n = 16756784;
 
-        String s = "abcabcbb";
-        System.out.println("Length of longest substring: " + lengthOfLongestSubstring(s));
-    }
+        String s = String.valueOf(n);
 
-    public static int lengthOfLongestSubstring(String s) {
-        int left = 0;
-        int maxLength = 0;
-        HashMap<Character,Integer> map = new HashMap<>();
+        Stack<Integer> stack = new Stack<>();
 
-        for(int right=0;right<s.length();right++) {
-            char current = s.charAt(right);
-            if(map.containsKey(current)&&map.get(current)>=left) {
-                left = map.get(current)+1;
+        for (char ch : s.toCharArray()) {
+
+            int digit = ch - '0';
+
+            while (!stack.isEmpty() && stack.peek() > digit) {
+                stack.pop();
             }
 
-            map.put(current,right);
-
-            maxLength = Math.max(maxLength,right-left+1);
+            stack.push(digit);
         }
 
-        return maxLength;
+        System.out.println(stack);
     }
 
-}
+ }
 
 
 

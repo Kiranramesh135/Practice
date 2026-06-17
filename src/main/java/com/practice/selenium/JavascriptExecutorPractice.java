@@ -27,7 +27,7 @@ public class JavascriptExecutorPractice {
 		driver.manage().window().maximize();
 
 		// Set script timeout to 20 seconds
-		driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
+//		driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
 
 		// Declare and set the start time
 		long star_time = System.currentTimeMillis();
@@ -50,10 +50,15 @@ public class JavascriptExecutorPractice {
 
 			driver = new ChromeDriver();
 
+			driver.manage().window().maximize();
+
 			// Creating the JavaScriptExecutor interace object type casting
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 
-			driver.manage().window().maximize();
+			// Scroll down by 1000 pixels
+			js.executeScript("window.scrollBy(0,1000)");
+
+
 
 			// Launching the site
 			driver.get("http://demo.guru99.com/V4/");

@@ -10,7 +10,8 @@ public class MaxOccuranceOfCharacterInString {
     }
 
     public static void maxCharOccurance(String s) {
-        s = s.replaceAll("\\s+","");
+        s = s.replaceAll(" ","");
+        System.out.println(s);
         s = s.toLowerCase();
         HashMap<Character,Integer> map = new HashMap<>();
 
